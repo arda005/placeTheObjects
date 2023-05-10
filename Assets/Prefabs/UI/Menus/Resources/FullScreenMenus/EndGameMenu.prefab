@@ -2252,9 +2252,9 @@ MonoBehaviour:
   totalScoreText: {fileID: 5288773516813302960}
   reultElementsContent: {fileID: 915750151493326672}
   resultElement: {fileID: 8589208162039155028, guid: 32dce30e316de4e4589e6f9068595d78, type: 3}
-  resultElementCorrectColor: {r: 0.5518868, g: 1, b: 0.5518868, a: 1}
-  resultElementWrongColor: {r: 1, g: 0.5235849, b: 0.5235849, a: 1}
-  resultElementNormalColor: {r: 0, g: 0, b: 0, a: 1}
+  resultElementCorrectColor: {r: 0.4182914, g: 0.8392157, b: 0.28627452, a: 1}
+  resultElementWrongColor: {r: 0.8392157, g: 0.2916333, b: 0.28627452, a: 1}
+  resultElementNormalColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
 --- !u!1 &8547700318602792568
 GameObject:
   m_ObjectHideFlags: 0
