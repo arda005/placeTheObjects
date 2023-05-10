@@ -20,7 +20,7 @@ namespace CaseProject.Intractable
         /// <summary>
         /// The distance that player can hold the objects.
         /// </summary>
-        private float maxIntractDistance = 3f;
+        [SerializeField] private float maxIntractDistance = 2.25f;
 
         /// <summary>
         /// After player hold the objects how far they are staying.
@@ -34,7 +34,7 @@ namespace CaseProject.Intractable
         /// This is the distance that how can intracted object go far from camera.
         /// Can`t be higher than maxHoldingDistance.
         /// </summary>
-        public float currentHoldingDistance;
+        private float currentHoldingDistance;
 
         /// <summary>
         /// Crosshair manager.
@@ -67,7 +67,7 @@ namespace CaseProject.Intractable
             var chracterCameraTr = CharacterCameraManager.Instance.CharacterCamera.transform;
 
             var allHits = Physics.RaycastAll(chracterCameraTr.position,
-                chracterCameraTr.forward);
+                chracterCameraTr.forward, maxIntractDistance);
 
             currentHoldingDistance = maxHoldingDistance;
             foreach(var hit in allHits)

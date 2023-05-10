@@ -741,6 +741,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b7058914d1011a643bb7cd352d11546e, type: 3}
   m_PrefabInstance: {fileID: 64874946}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &100986919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100986920}
+  m_Layer: 0
+  m_Name: Levels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &100986920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100986919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2064363434}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &131396673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d4851a32d04d280459f68d56f2ec0286, type: 3}
@@ -1404,10 +1436,9 @@ Transform:
   m_Children:
   - {fileID: 744530250}
   - {fileID: 1908303031}
-  - {fileID: 2064363434}
   - {fileID: 369155576}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &348035577
 GameObject:
@@ -1702,7 +1733,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 338974256}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &369155577
 MonoBehaviour:
@@ -2219,7 +2250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038a7c8d390106b4691cf57cb57aa07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHoldingDistance: 0
+  maxIntractDistance: 2.25
 --- !u!54 &477487729
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7053,7 +7084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelTitle: Place Objects
-  levelDescreption: 'Place correct objects to the are.
+  levelDescreption: 'Place correct objects to the area.
 
     {{totalPlacedObejct}}
     more objects left!'
@@ -7066,13 +7097,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064363432}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 338974256}
-  m_RootOrder: 2
+  m_Father: {fileID: 100986920}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2070683581
 GameObject:
