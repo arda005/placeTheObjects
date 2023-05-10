@@ -2,6 +2,7 @@ using CaseProject.Level;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace CaseProject.UI
@@ -18,10 +19,23 @@ namespace CaseProject.UI
             CheckTargetObjects();
         }
 
-        public void RestarTheGame()
+        /// <summary>
+        /// When player clicks return to the retart the game button.
+        /// Will be assigned in Unity Inspector.
+        /// </summary>
+        public void RestarTheGameEvent()
         {
             GameManager.Instance.RestartTheGame();
             Close();
+        }
+
+        /// <summary>
+        /// When player clicks return to the main menu button.
+        /// Will be assigned in Unity Inspector.
+        /// </summary>
+        public void ReturnToTheMainMenuButtonEvent()
+        {
+            SceneManager.LoadScene(0);
         }
 
         /// <summary>
@@ -38,17 +52,18 @@ namespace CaseProject.UI
 
             foreach (var correct in corrects)
             {
-
+                //If on of the target selected in related pair
                 if (correct.IsThisOrOtherSelected)
                 {
-                    if (correct.IsSelected)
-                        view.CreateResultElement(correct);
-                    else
-                        view.CreateResultElement(correct.Other);
+                    //Then we are cheking if correct one in the target.
+                    if (correct.IsInTarget)
+                        view.CreateResultElement(correct, true);
+                    else //If not then it is not accaptable.
+                        view.CreateResultElement(correct.Other, false);
                 }
-                else
-                {
-                    view.CreateResultElement((FirstLevelTargetObject)correct);
+                else //If none of the objects selected in the pair it means we 
+                {    //did not give or take score from user. But we are showing both of the objects with 0 score
+                    view.CreateResultElement((FirstLevelTargetObject)correct); // in the end game screen.
                     view.CreateResultElement((FirstLevelTargetObject)correct.Other);
                 }
             }

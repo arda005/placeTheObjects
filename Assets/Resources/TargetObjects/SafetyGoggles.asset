@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d405fffc97e49fd47b39a711bc10d4c1, type: 3}
-  m_Name: Goggles
+  m_Name: SafetyGoggles
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: 96fc5f977dbf5fb4db0aa05d8a7c193b, type: 3}
-  title: "Koruyucu G\xF6zl\xFCk"
+  iconSprite: {fileID: 21300000, guid: 2bff0c614a04be0439fcddcd55930b77, type: 3}
+  title: Safety Goggles

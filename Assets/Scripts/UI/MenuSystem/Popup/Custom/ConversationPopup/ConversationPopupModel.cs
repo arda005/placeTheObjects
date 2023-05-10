@@ -36,7 +36,7 @@ namespace CaseProject.UI
         /// <summary>
         /// Callbacks for accept button.
         /// </summary>
-        public UnityEvent OnAccept { get; protected set; }  = new UnityEvent();
+        public UnityAction OnAccept { get; protected set; }  = null;
 
         /// <summary>
         /// The text of cancel button.
@@ -52,12 +52,12 @@ namespace CaseProject.UI
         /// <summary>
         /// Callbacks for cancel button.
         /// </summary>
-        public UnityEvent OnCancel { get; protected set; } = new UnityEvent();
+        public UnityAction OnCancel { get; protected set; } = null;
 
         /// <summary>
         /// Initiliazes the object.
         /// </summary>
-        public void Init(string title, string descreption, UnityEvent onAccept, UnityEvent onCancel, string acceptButtonText, string cancelButtonText)
+        public void Init(string title, string descreption, UnityAction onAccept, UnityAction onCancel, string acceptButtonText, string cancelButtonText)
         {
             Title = title;
             Descreption = descreption;
@@ -67,19 +67,22 @@ namespace CaseProject.UI
             OnCancel = onCancel;
         }
 
-        public void Init(string title, string descreption, UnityEvent onAccept, UnityEvent onCancel)
+        public void Init(string title, string descreption, UnityAction onAccept, UnityAction onCancel)
         {
             Init(title, descreption, onAccept, onCancel, defaultAcceptText, defaultCancelText);
         }
 
-        public void Init(string title, string descreption, UnityEvent onAccept)
+        public void Init(string title, string descreption, UnityAction onAccept)
         {
-            Init(title, descreption, onAccept, null, defaultAcceptText, defaultCancelText);
+            //We passed empty function for onCancel because if we pass null it will 
+            //deactivate the button. We want to show it but have no other capabilty than
+            //closing the menu.
+            Init(title, descreption, onAccept, () => { }, defaultAcceptText, defaultCancelText);
         }
 
         public void Init(string title, string descreption)
         {
-            Init(title, descreption, OnAccept, null, defaultAcceptText, defaultCancelText);
+            Init(title, descreption, () => { }, null, defaultAcceptText, defaultCancelText);
         }
     }
 }

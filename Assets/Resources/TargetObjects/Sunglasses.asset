@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d405fffc97e49fd47b39a711bc10d4c1, type: 3}
   m_Name: Sunglasses
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: 65a1928224b8541439b433a52ea9c3d9, type: 3}
-  title: "G\xFCne\u015F G\xF6zl\xFC\u011F\xFC"
+  iconSprite: {fileID: 21300000, guid: 53cc1ea97a15da74bbf600afb4d5f235, type: 3}
+  title: Sunglasses

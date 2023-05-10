@@ -1,3 +1,4 @@
+using CaseProject.Audio;
 using CaseProject.Intractable;
 using CaseProject.UI;
 using DG.Tweening;
@@ -10,8 +11,11 @@ namespace CaseProject.Level
     /// <summary>
     /// The objects that players place for the first level.
     /// </summary>
+    [RequireComponent(typeof(AudioSource))]
     public class FirstLevelTargetObject : DragElement, IRestartable
     {
+        private AudioSource audioSource;
+
         /// <summary>
         /// If this pbject seleclted before.
         /// </summary>
@@ -34,9 +38,14 @@ namespace CaseProject.Level
         public bool IsInTarget { get; private set; }
 
         /// <summary>
-        /// First position of the object. We are using this for restarting the game.
+        /// Initial position of the object. We are using this for restarting the game.
         /// </summary>
         private Vector3 firsPosition;
+
+        /// <summary>
+        /// Initial rotation of the object. We are using this for restarting the game.
+        /// </summary>
+        private Vector3 firsRotation;
 
         #region UNITY_INSPECTOR
         /// <summary>
@@ -62,7 +71,11 @@ namespace CaseProject.Level
         protected override void Awake()
         {
             base.Awake();
+
+            audioSource = GetComponent<AudioSource>();
+
             firsPosition = transform.position;
+            firsRotation = transform.eulerAngles;
         }
 
         protected override void Update()
@@ -150,6 +163,8 @@ namespace CaseProject.Level
 
             firsLevel.IncreasePlacedObjectCount();
             placedObjectsView.AddElement(this, other);
+
+            AudioManager.Instance.PlayPlacedInTartegClip(audioSource);
         }
 
         /// <summary>
@@ -218,6 +233,7 @@ namespace CaseProject.Level
         public void OnRestart()
         {
             transform.position = firsPosition;
+            transform.eulerAngles = firsRotation;
             IsSelected = false;
             IsInTarget = false;
         }

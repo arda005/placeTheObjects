@@ -22,9 +22,6 @@ namespace CaseProject.UI
         [TextArea(2, 20)]
         public string aboutPopupDescription;
 
-        /// <summary>
-        /// When about pop up menu accepted.
-        /// </summary>
-        public UnityEvent aboutPopupOnAccepted;
+        public string linkedInUrl;
     }
 }

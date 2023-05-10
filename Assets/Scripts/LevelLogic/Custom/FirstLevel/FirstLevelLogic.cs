@@ -67,16 +67,15 @@ namespace CaseProject.Level
             base.CheckLevel();
 
             Score = 0;
-            foreach(var correct in CorrectObjects)
+            foreach (var correct in CorrectObjects)
             {
-                if (correct.IsInTarget)
-                    Score += CorrectPlacementScore;
-            }
-
-            foreach (var wrong in WrongObjects)
-            {
-                if (wrong.IsInTarget)
-                    Score += WrongPlacementScore;
+                if (correct.IsThisOrOtherSelected)
+                {
+                    if (correct.IsInTarget)
+                        Score += CorrectPlacementScore;
+                    else
+                        Score += WrongPlacementScore;
+                }
             }
         }
 

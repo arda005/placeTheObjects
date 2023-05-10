@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Headphone
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: 0e5f6160e8e50de4ba5a89b0088f0391, type: 3}
-  title: "Kulakl\u0131k"
+  title: Headphones

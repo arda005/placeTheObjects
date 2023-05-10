@@ -45,35 +45,36 @@ namespace CaseProject.UI
         {
             totalScoreText.text = totalScore.ToString();
         }
-
-        /// <summary>
-        /// Creates correct reult element.
-        /// </summary>
-        public void CreateResultElement(FirstLevelTargetObjectCorrect correctObject)
-        {
-            var score = FirstLevelLogic.CorrectPlacementScore;
-            CreateResultElement().Init(correctObject.TargetObjectInformation.title, score,
-                resultElementCorrectColor, correctObject.TargetObjectInformation.iconSprite);
-        }
-
-        /// <summary>
-        /// Creates wrong result element.
-        /// </summary>
-        public void CreateResultElement(FirstLevelTargetObjectWrong wrongObject)
-        {
-            var score = FirstLevelLogic.WrongPlacementScore;
-            CreateResultElement().Init(wrongObject.TargetObjectInformation.title, score, 
-                resultElementWrongColor, wrongObject.TargetObjectInformation.iconSprite);
-        }
         
+        /// <summary>
+        /// Creates result element.
+        /// </summary>
+        public void CreateResultElement(FirstLevelTargetObject targetObject, int score, Color color)
+        {
+            var title = targetObject.TargetObjectInformation.title;
+            var sprite = targetObject.TargetObjectInformation.iconSprite;
+
+            CreateResultElement().Init(title, score, color, sprite);
+        }
+
+        /// <summary>
+        /// Creates result element.
+        /// </summary>
+        public void CreateResultElement(FirstLevelTargetObject targetObject, bool isCorrect)
+        {
+            var score = isCorrect ? FirstLevelLogic.CorrectPlacementScore : FirstLevelLogic.WrongPlacementScore;
+            var color = isCorrect ? resultElementCorrectColor : resultElementWrongColor;
+            CreateResultElement(targetObject, score, color);
+        }
+
         /// <summary>
         /// Creates result element.
         /// </summary>
         public void CreateResultElement(FirstLevelTargetObject targetObject)
         {
             var score = 0;
-            CreateResultElement().Init(targetObject.TargetObjectInformation.title, score,
-                resultElementNormalColor, targetObject.TargetObjectInformation.iconSprite);
+            var color = resultElementNormalColor;
+            CreateResultElement(targetObject, score, color);
         }
 
         /// <summary>

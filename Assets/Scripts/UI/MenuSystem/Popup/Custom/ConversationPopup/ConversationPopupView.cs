@@ -38,7 +38,7 @@ namespace CaseProject.UI
         /// <summary>
         /// Updates accept button.
         /// </summary>
-        public void UpdateAcceptButton(string text, UnityEvent onClick)
+        public void UpdateAcceptButton(string text, UnityAction onClick)
         {
             UpdateButton(acceptButton, text, onClick);
         }
@@ -46,7 +46,7 @@ namespace CaseProject.UI
         /// <summary>
         /// Updates cancel button.
         /// </summary>
-        public void UpdateCancelButton(string text, UnityEvent onClick)
+        public void UpdateCancelButton(string text, UnityAction onClick)
         {
             UpdateButton(cancelButton, text, onClick);
         }
@@ -54,7 +54,7 @@ namespace CaseProject.UI
         /// <summary>
         /// Updates a button.
         /// </summary>
-        private void UpdateButton(AdvancedButton button , string text, UnityEvent onClick)
+        private void UpdateButton(AdvancedButton button , string text, UnityAction onClick)
         {
             if(onClick == null)
             {
@@ -63,7 +63,7 @@ namespace CaseProject.UI
             }
 
             button.SetText(text);
-            button.OnClick.AddListener(() => { onClick.Invoke(); });
+            button.OnClick.AddListener(onClick);
         }
     }
 }

@@ -196,7 +196,9 @@ namespace CaseProject
 
         public void OnRestart()
         {
+            controller.enabled = false;
             transform.position = firstPosition;
+            controller.enabled = true;
         }
     }
 }

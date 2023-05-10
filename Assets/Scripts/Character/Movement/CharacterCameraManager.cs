@@ -27,6 +27,11 @@ namespace CaseProject
         /// </summary>
         private Vector3 firstRotaion;
 
+        /// <summary>
+        /// Initital rotation values for character camera. We are using it for restarting the game.
+        /// </summary>
+        private Vector3 firstCameraRotaion;
+
         #region UNITY_INSPECTOR
         /// <summary>
         /// Mouse sensivity for camera rotation.
@@ -39,6 +44,7 @@ namespace CaseProject
             Instance = this;
             CharacterCamera = GetComponentInChildren<Camera>();
             firstRotaion = transform.eulerAngles;
+            firstCameraRotaion = CharacterCamera.transform.eulerAngles;
         }
 
         void Start()
@@ -105,6 +111,7 @@ namespace CaseProject
         public void OnRestart()
         {
             transform.eulerAngles = firstRotaion;
+            CharacterCamera.transform.eulerAngles = firstCameraRotaion;
         }
     }
 }
