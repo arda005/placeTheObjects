@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace CaseProject.UI
-{
+{    /// <summary>
+     /// Base class for model of MVC.
+     /// </summary>
     public class BaseModel : MonoBehaviour
     {
+        /// <summary>
+        /// Controller for this model.
+        /// </summary>
         public BaseController Controller { get; private set; }
         protected virtual void Awake() 
         {

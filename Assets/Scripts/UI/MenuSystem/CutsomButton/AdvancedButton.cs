@@ -6,12 +6,29 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// The button have a default animation for this game and have more capabilities.
+/// </summary>
 public class AdvancedButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    /// <summary>
+    /// Recttransform component of the button.
+    /// </summary>
     private RectTransform rectTransform;
 
+    /// <summary>
+    /// When click on button
+    /// </summary>
     public readonly UnityEvent OnClick = new UnityEvent();
+    
+    /// <summary>
+    /// When pointer enter on button.
+    /// </summary>
     public readonly UnityEvent OnEnter = new UnityEvent();
+    
+    /// <summary>
+    /// When pointer exit in button.
+    /// </summary>
     public readonly UnityEvent OnExit = new UnityEvent();
 
     #region UNITY_INSPECTOR
@@ -72,6 +89,10 @@ public class AdvancedButton : MonoBehaviour, IPointerClickHandler, IPointerEnter
         SetIndicatorAnimtaion(false);
     }
 
+    /// <summary>
+    /// Sets indicator animation due to activity state.
+    /// </summary>
+    /// <param name="isActive">If button active.</param>
     private void SetIndicatorAnimtaion(bool isActive)
     {
         if (isActive)
@@ -92,12 +113,19 @@ public class AdvancedButton : MonoBehaviour, IPointerClickHandler, IPointerEnter
         }
     }
 
+    /// <summary>
+    /// Sets text of the button.
+    /// </summary>
+    /// <param name="text">Text going to be set.</param>
     public void SetText(string text)
     {
         this.text = text;
         UpdateUI();
     }
 
+    /// <summary>
+    /// Updates UI of the button.
+    /// </summary>
     public void UpdateUI()
     {
         var mainTextRect = mainText.GetComponent<RectTransform>();

@@ -7,14 +7,39 @@ using UnityEngine.InputSystem.HID;
 
 namespace CaseProject.Intractable
 {
+    /// <summary>
+    /// Controls player's intraction with intractable objects in the game world.
+    /// </summary>
     public class CharacterIntractManager : MonoBehaviour
     {
+        /// <summary>
+        /// The object that player currenlt intraction. Exmp: The objects that player holding.
+        /// </summary>
         public IntractableElement CurrentIntractedObject { get; private set; } = null;
 
-        private CrosshairModel crosshairModel;
+        /// <summary>
+        /// The distance that player can hold the objects.
+        /// </summary>
+        private float maxIntractDistance = 3f;
 
-        private float maxDistance = 1.25f;
-        public float currentDistance;
+        /// <summary>
+        /// After player hold the objects how far they are staying.
+        /// It is not the distance that player intract object with!
+        /// </summary>
+        private float maxHoldingDistance = 1.25f;
+
+        /// <summary>
+        /// When players holding an object and get close the obstacles such
+        /// as walls the intracted object will be behind the wall eventually.
+        /// This is the distance that how can intracted object go far from camera.
+        /// Can`t be higher than maxHoldingDistance.
+        /// </summary>
+        public float currentHoldingDistance;
+
+        /// <summary>
+        /// Crosshair manager.
+        /// </summary>
+        private CrosshairModel crosshairModel;
 
         private void Awake()
         {
@@ -34,6 +59,9 @@ namespace CaseProject.Intractable
             CheckCurrentIntractedObject();
         }
 
+        /// <summary>
+        /// Draws Raycast and calls related functions for intracting.
+        /// </summary>
         private void DrawRay()
         {
             var chracterCameraTr = CharacterCameraManager.Instance.CharacterCamera.transform;
@@ -41,7 +69,7 @@ namespace CaseProject.Intractable
             var allHits = Physics.RaycastAll(chracterCameraTr.position,
                 chracterCameraTr.forward);
 
-            currentDistance = maxDistance;
+            currentHoldingDistance = maxHoldingDistance;
             foreach(var hit in allHits)
             {
                 var intractableElement = hit.transform.GetComponent<IntractableElement>();
@@ -58,14 +86,18 @@ namespace CaseProject.Intractable
                 else
                 {
                     var distance = Vector3.Distance(chracterCameraTr.position, hit.point);
-                    if (distance < currentDistance)
-                        currentDistance = distance;
+                    if (distance < currentHoldingDistance)
+                        currentHoldingDistance = distance;
                 }
             }
 
             HoldCurrentObject();
         }
 
+        /// <summary>
+        /// If player incracting with an object right not, this function
+        /// either ends it or updates intracting state.
+        /// </summary>
         private void CheckCurrentIntractedObject()
         {
             if (CurrentIntractedObject == null) return;
@@ -80,6 +112,9 @@ namespace CaseProject.Intractable
             } 
         }
 
+        /// <summary>
+        /// If player is holding an intracting objects ends intracting with it
+        /// </summary>
         public void TryDropCurrentObject()
         {
             if (CurrentIntractedObject == null) return;
@@ -90,6 +125,10 @@ namespace CaseProject.Intractable
             crosshairModel.SetCrossHairActive(true);
         }
 
+        /// <summary>
+        /// Sets the currently intracting object.
+        /// </summary>
+        /// <param name="intractableElement">Object to set</param>
         public void SetIntractedObject(IntractableElement intractableElement)
         {
             if (!intractableElement.IsIntractable)
@@ -101,11 +140,17 @@ namespace CaseProject.Intractable
             crosshairModel.SetCrossHairActive(false);
         }
 
+        /// <summary>
+        /// Updates currently intracting objects for this frame.
+        /// </summary>
         private void UpdateCurrentIntractedElement()
         {
             CurrentIntractedObject.OnIntract();
         }
 
+        /// <summary>
+        /// Keeps currently interacting objects at a distance from the camera.
+        /// </summary>
         private void HoldCurrentObject()
         {
             if (CurrentIntractedObject == null)
@@ -117,7 +162,7 @@ namespace CaseProject.Intractable
             var chracterCameraTr = CharacterCameraManager.Instance.CharacterCamera.transform;
 
             CurrentIntractedObject.transform.position = chracterCameraTr.position +
-                    chracterCameraTr.forward * currentDistance;
+                    chracterCameraTr.forward * currentHoldingDistance;
         }
     }
 }

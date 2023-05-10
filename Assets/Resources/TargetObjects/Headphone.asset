@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d405fffc97e49fd47b39a711bc10d4c1, type: 3}
   m_Name: Headphone
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: 4a4cdd1b816f2c14e8f99597ac619de1, type: 3}
+  iconSprite: {fileID: 21300000, guid: 0e5f6160e8e50de4ba5a89b0088f0391, type: 3}
   title: "Kulakl\u0131k"

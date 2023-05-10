@@ -5,22 +5,45 @@ using UnityEngine.InputSystem;
 
 namespace CaseProject
 {
+    /// <summary>
+    /// Handles movement of the FPS character.
+    /// </summary>
     [RequireComponent(typeof(CharacterController))]
-    public class CharacterMovementManager : MonoBehaviour
+    public class CharacterMovementManager : MonoBehaviour, IRestartable
     {
         public static CharacterMovementManager Instance { get; private set; }
 
         private CharacterController controller;
 
+        /// <summary>
+        /// Current speed of the character.
+        /// </summary>
         public Vector3 CurrentSpeed { get; private set; }
 
-        private bool justJumped = false;
+        /// <summary>
+        /// If player jumped and still rising up.
+        /// </summary>
+        private bool isGoingUp = false;
 
-
+        /// <summary>
+        /// Initial position of the character. We are using it for restarting the game.
+        /// </summary>
+        private Vector3 firstPosition;
 
         #region UNITY_INSPECTOR
+        /// <summary>
+        /// Movement speed of the character.
+        /// </summary>
         [SerializeField] private float speed = 0.2f;
+
+        /// <summary>
+        /// Jump speed of the character.
+        /// </summary>
         [SerializeField] private float jumpSpeed = 5f;
+
+        /// <summary>
+        /// Gravity for the character
+        /// </summary>
         [SerializeField] private float gravity = 0.2f;
 
         /// <summary>
@@ -34,6 +57,10 @@ namespace CaseProject
         /// players think game restricting their moves.
         /// </summary>
         [SerializeField] private float groundCheckOffset = 0.3f;
+
+        /// <summary>
+        /// The point for calculating if player hit floor.
+        /// </summary>
         [SerializeField] private Transform groundCheck;
         #endregion
 
@@ -49,6 +76,7 @@ namespace CaseProject
         {
             Instance = this;
             controller = GetComponent<CharacterController>();
+            firstPosition = transform.position;
         }
 
         void Start()
@@ -63,15 +91,22 @@ namespace CaseProject
             SetMove();
         }
 
+        /// <summary>
+        /// Updates movement of the character.
+        /// </summary>
         private void SetMove()
         {
             float verticalSpeedTemp = CurrentSpeed.y;
-            CurrentSpeed = GetMoveAmount().normalized * speed;
+            CurrentSpeed = GetMoveInput().normalized * speed;
             CurrentSpeed = new Vector3(CurrentSpeed.x, verticalSpeedTemp, CurrentSpeed.z);
             controller.Move(CurrentSpeed);
         }
 
-        private Vector3 GetMoveAmount()
+        /// <summary>
+        /// Returns direction for the movement.
+        /// </summary>
+        /// <returns>The direction of the input.</returns>
+        private Vector3 GetMoveInput()
         {
             var moveAmount = Vector3.zero;
             if (Keyboard.current.wKey.isPressed)
@@ -97,13 +132,17 @@ namespace CaseProject
             return moveAmount;
         }
 
+        /// <summary>
+        /// Updates gravity.
+        /// </summary>
         private void GravityUpdate()
         {
             var hitDistance = IsGrounded();
 
+            //If character not hitting floor.
             if (hitDistance > groundCheckDistance)
             {
-                justJumped = false;
+                isGoingUp = false;
                 CurrentSpeed = new Vector3(CurrentSpeed.x, CurrentSpeed.y - gravity * 0.001f, CurrentSpeed.z);
             }
 
@@ -116,7 +155,7 @@ namespace CaseProject
                 bool isJumped = JumpCheck();
                 if (!isJumped)
                 {
-                    if (!justJumped && hitDistance < groundCheckDistance)
+                    if (!isGoingUp && hitDistance < groundCheckDistance)
                     {
                         CurrentSpeed = new Vector3(CurrentSpeed.x, 0, CurrentSpeed.z);
                     }
@@ -124,6 +163,10 @@ namespace CaseProject
             }
         }
 
+        /// <summary>
+        /// Returns if character hits the floor.
+        /// </summary>
+        /// <returns>If character hits the floor.</returns>
         private float IsGrounded()
         {
             var didHit = Physics.Raycast(groundCheck.transform.position, -groundCheck.transform.up, out RaycastHit hit);
@@ -135,16 +178,25 @@ namespace CaseProject
             return Mathf.Infinity;
         }
 
+        /// <summary>
+        /// Calls every frame that players able to jump.
+        /// </summary>
+        /// <returns>Did player jump</returns>
         private bool JumpCheck()
         {
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                justJumped = true;
+                isGoingUp = true;
                 CurrentSpeed = new Vector3(CurrentSpeed.x, jumpSpeed * 0.001f, CurrentSpeed.z); ;
                 return true;
             }
 
             return false;
+        }
+
+        public void OnRestart()
+        {
+            transform.position = firstPosition;
         }
     }
 }

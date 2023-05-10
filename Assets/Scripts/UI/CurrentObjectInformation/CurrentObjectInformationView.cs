@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace CaseProject.UI
 {
+    /// <summary>
+    /// View for Current Object Information Area
+    /// </summary>
     public class CurrentObjectInformationView : BaseView
     {
         [SerializeField] private Image iconImage;
@@ -24,18 +27,28 @@ namespace CaseProject.UI
             iconImage.preserveAspect = true;
         }
 
+        /// <summary>
+        /// Updates Icon
+        /// </summary>
         public void UpdateIcon(Sprite iconSprite)
         {
             iconImage.sprite = iconSprite;
             iconImage.color = ActiveColor;
         }
 
+        /// <summary>
+        /// Updates Title
+        /// </summary>
         public void UpdateTitleText(string title)
         {
             titleText.text = title;
         }
 
-        public void CleanUI()
+
+        /// <summary>
+        /// Clears UI
+        /// </summary>
+        public void ClearUI()
         {
             iconImage.sprite = deactiveSprite;
             iconImage.color = DeactiveColor;

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d405fffc97e49fd47b39a711bc10d4c1, type: 3}
   m_Name: WorkShoes
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: 1c1bef4b40e990c42aed6432ebd324ef, type: 3}
+  iconSprite: {fileID: 21300000, guid: a13c4d70229aaec4fb9b62588a597746, type: 3}
   title: "\u0130\u015F Ayakkab\u0131s\u0131"

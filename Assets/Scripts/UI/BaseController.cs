@@ -4,9 +4,19 @@ using UnityEngine;
 
 namespace CaseProject.UI
 {
+    /// <summary>
+    /// Base class for controller of MVC.
+    /// </summary>
     public class BaseController : MonoBehaviour
     {
+        /// <summary>
+        /// Model of this controller.
+        /// </summary>
         public BaseModel Model { get; private set; }
+
+        /// <summary>
+        /// View of this controller.
+        /// </summary>
         public BaseView View { get; private set; }
 
         protected virtual void Awake() { AssignModelAndView(); }
@@ -21,8 +31,14 @@ namespace CaseProject.UI
 
         protected virtual void Update() { }
 
+        /// <summary>
+        /// Updates view.
+        /// </summary>
         public virtual void UpdateView() { }
 
+        /// <summary>
+        /// Assigsn view and model.
+        /// </summary>
         protected virtual void AssignModelAndView() 
         {
             Model = GetComponent<BaseModel>();

@@ -4,10 +4,19 @@ using UnityEngine;
 
 namespace CaseProject.UI
 {
+    /// <summary>
+    /// Base class for View of MVC.
+    /// </summary>
     public class BaseView : MonoBehaviour
     {
+        /// <summary>
+        /// Recttransform component of the object.
+        /// </summary>
         public RectTransform viewRectTransform { get; private set; }
 
+        /// <summary>
+        /// Controller for this view.
+        /// </summary>
         public BaseController Controller { get; private set; }
 
         protected virtual void Awake() 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CaseProject.UI
 {
+    /// <summary>
+    /// Controller for tast information UI.
+    /// </summary>
     public class TaskInformationContoller : BaseController
     {
         public override void UpdateView()

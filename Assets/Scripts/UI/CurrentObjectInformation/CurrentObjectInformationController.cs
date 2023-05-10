@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CaseProject.UI
 {
+    /// <summary>
+    /// Controller for Current Object Information Area
+    /// </summary>
     public class CurrentObjectInformationController : BaseController
     {
         public override void UpdateView()
@@ -15,7 +18,7 @@ namespace CaseProject.UI
 
             if (model.TargetObjectInformation == null)
             {
-                view.CleanUI();
+                view.ClearUI();
                 return;
             }
 

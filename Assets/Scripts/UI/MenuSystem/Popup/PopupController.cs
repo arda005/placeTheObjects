@@ -4,11 +4,17 @@ using UnityEngine;
 
 namespace CaseProject.UI
 {
+    /// <summary>
+    /// Controller class for pop ups.
+    /// </summary>
     public class PopupController : MenuController
     {
+        /// <summary>
+        /// Closes the pop up.
+        /// </summary>
         public override void Close()
         {
-            MenuManager.Instance.CheckPopupContentActivity();
+            MenuManager.Instance.UpdatePopupContentActivity();
             base.Close();
         }
     }

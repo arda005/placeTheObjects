@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CaseProject.UI
 {
+    /// <summary>
+    /// Controller of crosshair.
+    /// </summary>
     public class CrosshairController : BaseController
     {
         protected override void AssignModelAndView()
